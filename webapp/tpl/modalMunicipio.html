@@ -1,0 +1,20 @@
+<div class="modal-header">
+    <h3 class="modal-title">Agregar Municipio</h3>
+</div>
+<div class="modal-body">
+    
+        <div class="form-group">
+            <div class="col-md-18">
+                <input placeholder="Nombre del municipio" type="text" class="form-control" 
+               ng-model="item.name" 
+          
+               >
+             </div>  
+              
+        </div>
+
+</div>
+<div class="modal-footer">                  
+    <button class="btn btn-default" ng-click="cancel()">Cancelar</button>
+    <button class="btn btn-primary" ng-click="okMunicipio(item)">OK</button>
+</div>

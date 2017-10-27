@@ -1,0 +1,241 @@
+<div class="modal-header" ng-init="consultaMiembro()">
+    <h3 class="modal-title">Validar miembro <p>
+   </p></h3>
+     <h5 ><p>
+    {{item.primerNombre}} {{item.segundoNombre}} {{item.primerApellido}} {{item.segundoApellido}}</p></h5>
+      <h5 ><p>
+    <strong>Identificación: </strong>{{item.nacionalidad}}-{{item.cedula}} </p></h5>
+</div>
+<div class="modal-body">
+    	
+  <div ng-controller="AccordionDemoCtrl" ng-show="item.primerNombre" >
+<accordion close-others="oneAtATime">
+          <accordion-group heading="Datos de contacto"   is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+            <p>
+            <div ng-show="!item.editing">
+              <div class="col-sm-6"> 
+                <b>Teléfono personal:</b> {{item.telefonoCelular}}
+              </div>
+              <div class="col-sm-6">
+              <b>Email:</b>
+                {{item.email}}
+              </div>
+               <div class="col-sm-6">
+              <b>Instagram:</b>
+                {{item.cuentaI}}
+              </div>
+               <div class="col-sm-6">
+              <b>Facebook:</b>
+                {{item.cuentaF}}
+              </div>
+              <div class="col-sm-10">
+                <b>Dirección de habitación:</b> 
+                {{item.direccion}}
+              </div>  
+
+            </div>
+            <div ng-show="item.editing" class="col-sm-6">
+              Teléfono Personal
+              <input type="text" class="form-control input-sm"   placeholder="Teléfono" ng-model="item.telefonoCelular" style="" >
+            </div>
+            <div ng-show="item.editing" class="col-sm-6">
+              Email
+              <input type="text" class="form-control input-sm"   placeholder="Email" ng-model="item.email" style="" >
+            </div>
+            <div ng-show="item.editing" class="col-sm-6">
+              Instagram
+              <input type="text" class="form-control input-sm"   placeholder="Instagram" ng-model="item.cuentaI" style="" >
+            </div>
+             <div ng-show="item.editing" class="col-sm-6">
+              Facebook
+              <input type="text" class="form-control input-sm"   placeholder="Facebook" ng-model="item.cuentaF" style="" >
+            </div>
+            <div ng-show="item.editing" class="col-sm-12">
+              Dirección de habitación:
+              <textarea rows="2" class="form-control input-sm"   placeholder="Direccion de habitación" ng-model="item.direccion" style="" > </textarea>
+            </div>
+            
+            </p>
+          </accordion-group>
+         
+         <accordion-group heading="Datos profesionales"  is-disabled="status.isFirstDisabled">
+            <p>
+            <div ng-show="!item.editing">
+            <div class="col-sm-2"> 
+                <b>Universidad:</b>
+              </div>
+              <div class="col-sm-9"> 
+               <strong> Universidad de egreso: </strong>
+                <span class="form-control-static" >{{item.universidadEgreso}} .</span>
+                
+                <strong> Año de egreso: </strong>
+                <span class="form-control-static" >{{item.anoDeEgreso}} .</span>
+               
+              </div>
+       <div class="col-sm-2"> 
+                <b>Especialidad:</b>
+              </div>
+            
+            <div class="col-sm-9"  ng-show="{{item.especialidad != 'ODONTOLOGÍA GENERAL'}}"> 
+               {{item.especialidad}}
+                 
+              </div>
+
+              <div class="col-sm-12">  
+              <strong> Universidad de egreso: </strong>
+                              <span class="form-control-static" >{{item.universidadEgresoEspecialidad}} .</span>
+                <b>Año de egreso:</b> {{item.anoDeEgresoEspecialidad}}
+              </div>
+              
+              <div class="col-sm-10">
+              </br>
+                <b>Dirección de trabajo:</b> 
+                {{item.direccionTrabajo}}
+              </div>
+               <div class="col-sm-6"> 
+                <b>Teléfono trabajo:</b> {{item.telefonoTrabajo}}
+              </div>
+              <div class="col-sm-10">
+                <b>Municipio:</b> 
+                {{item.municipio}}
+              </div>
+               <div class="row">
+              <div class="form-group col-md-12" ng-hide="!item.especialidad && !item.editing">
+                  <div class="col-sm-12" ng-show="item.editing">
+                    <i class="icon-drawer "></i> Especialidad
+                    <ui-select ng-model="item.especialidad" theme="bootstrap" ng-show="item.editing">
+                      <ui-select-match placeholder="Seleccione...">{{$select.selected.nombre}}</ui-select-match>
+                      <ui-select-choices group-by="'nombre'" repeat="item.nombre as item in especialidades | filter: $select.search">
+                        <span ng-bind-html="item.nombre | highlight: $select.search"></span>
+                      </ui-select-choices>
+                    </ui-select>
+                  </div>
+              </div> 
+            </div> 
+            </div>
+          
+          
+
+           <div ng-show="item.editing" class="col-sm-6">
+              Año de egreso
+              <input type="text" class="form-control input-sm"   placeholder="Año de egreso" ng-model="item.AnoDeEgreso" style="" >
+            </div>
+            <div ng-show="item.editing" class="col-sm-6">
+              COV
+              <input type="text" class="form-control input-sm"   placeholder="COV" ng-model="item.cov" style="" >
+            </div>
+            <div ng-show="item.editing" class="col-sm-6">
+              MSAS
+              <input type="text" class="form-control input-sm"   placeholder="MSAS" ng-model="item.msas" style="" >
+            </div>
+             <div ng-show="item.editing" class="col-sm-6">
+              Teléfono de trabajo
+              <input type="text" class="form-control input-sm"   placeholder="Teléfono de trabajo" ng-model="item.telefonoTrabajo" style="" >
+            </div>
+          
+            <div ng-show="item.editing" class="col-sm-12">
+              Dirección de trabajo:
+              <textarea rows="2" class="form-control input-sm"   placeholder="Direccion de trabajo" ng-model="item.direccionTrabajo" style="" > </textarea>
+            </div>
+              <div class="row">
+              <div class="form-group col-md-12" ng-hide="!item.especialidad && !item.editing">
+                  <div class="col-sm-12" ng-show="item.editing">
+                    <i class=" icon-pointer"></i> Municipio
+                    <ui-select ng-model="item.municipio" theme="bootstrap" ng-show="item.editing">
+                      <ui-select-match placeholder="Seleccione...">{{$select.selected.name}}</ui-select-match>
+                      <ui-select-choices group-by="'name'" repeat="item.name as item in municipios | filter: $select.search">
+                        <span ng-bind-html="item.name | highlight: $select.search"></span>
+                      </ui-select-choices>
+                    </ui-select>
+                  </div>
+              </div> 
+            </div> 
+
+
+
+            
+          </accordion-group>          
+  
+
+           <accordion-group heading="Datos de ingreso"  is-disabled="status.isFirstDisabled">
+            <p>
+            <div ng-show="!item.editing">
+              
+              <div class="col-sm-6"> 
+                <b>Contraseña:</b> {{item.password}}
+              </div>
+            </div>
+          
+            <div ng-show="item.editing" class="col-sm-6">
+            Contraseña
+            <input type="text" class="form-control input-sm"   placeholder="Contraseña" ng-model="item.password" style="" >
+            </div>
+            </p>
+          </accordion-group>          
+   
+        </accordion>
+       
+
+
+      
+
+
+
+        <div class="row form-group text-center">
+<h3 class="modal-title">Indique por favor el C.O.T</h3>
+            <div class="col-md-4 text-center">
+                <input placeholder="COT" type="text" class="form-control" 
+               ng-model="item.cot" required>
+             </div>  
+        </div>
+                <div class="row form-group text-center">
+        <h3 class="modal-title">Edición de especialidad</h3>
+      
+                      <div class="col-xs-12">
+                       Especialidad 
+                          <label  class="i-switch m-t-xs m-r"   popover-trigger="mouseenter" popover-placement="bottom">
+                          <input type="checkbox" ng-model="switchEspecialidad" >
+                          <i></i>
+                          </label>
+                         
+                        </div>
+
+                    
+
+
+                           <div class="col-xs-12" ng-show="switchEspecialidad">
+                    <p>Especialidad:</p>
+                        <ui-select ng-model="item.especialidad" theme="bootstrap">
+                          <ui-select-match placeholder="...">{{$select.selected.nombre}}</ui-select-match>
+                          <ui-select-choices group-by="'nombre'" repeat="item.nombre as item in especialidades | filter: $select.search">
+                            <div ng-bind-html="item.nombre | highlight: $select.search"></div>
+                          </ui-select-choices>
+                        </ui-select>
+                 
+                      
+                    </div>
+
+                <div class="col-xs-12" ng-show="switchEspecialidad">
+                  <p>Universidad de egreso:</p>
+                    <input placeholder="Universidad de egreso especialidad" type="text" class="form-control" 
+                   ng-model="item.universidadEgresoEspecialidad" >                     
+                </div>
+
+                  <div class="col-xs-12" ng-show="switchEspecialidad">
+                       <p>Año de egreso (especialidad):</p>
+                      <ui-select ng-model="item.anoDeEgresoEspecialidad" theme="bootstrap">
+                        <ui-select-match placeholder="...">{{$select.selected}}</ui-select-match>
+                        <ui-select-choices repeat="item in anos | filter: $select.search">
+                          <div ng-bind-html="item | highlight: $select.search"></div>
+                        </ui-select-choices>
+                      </ui-select>
+                      <p></p>
+
+                    </div>
+    </div>
+       </div>
+</div>
+<div class="modal-footer">                  
+    <button class="btn btn-default" ng-click="cancel()">Cancelar</button>
+    <button class="btn btn-primary" ng-click="okAprobacion(item)">OK</button>
+</div>

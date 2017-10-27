@@ -1,0 +1,313 @@
+<div class="modal-header" ng-controller="SignupFormController">
+    <h3 class="modal-title" >+ {{item.tipo}}</h3>
+</div>
+
+<div class="panel-body">
+
+ <tabset class="tab-container" ng-init="steps={percent:10, step1:true, step2:false, step3:false}" ng-controller="FlotChartDemoCtrl2">
+            <tab heading="Personal" active="steps.step1" select="steps.percent=10">
+              <progressbar value="steps.percent" class="progress-xs" type="success">
+              </progressbar>
+              <form name="step1" class="form-validation">
+              <div class="row">
+                 <div class="col-xs-6">
+                    <p>Fecha de Nac.</p>
+                      <p class="input-group" ng-controller="DatepickerDemoCtrl">
+                      <input type="text" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="item.fechaNacimiento" is-open="opened" max-date="minDate" ng-change="getClientes2()" datepicker-options="dateOptions" ng-required="true"  close-text="Ok"/>
+                      <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                      </span>
+                    </p>
+                  </div>
+                   <div class="col-xs-6 ">
+                  <p><i class="icon-users" ></i> Sexo</p>
+                    <div class="btn-group" >
+                      <label   class="btn btn-default" ng-model="item.sexo" btn-radio="'Mujer'">F</label>
+                      <label  class="btn btn-default" ng-model="item.sexo" btn-radio="'Hombre'">M</label>
+                    </div>
+                  </div>
+                  </div>
+                  <div class="row">
+               
+                  </div>
+       
+                  
+                   <div class="row">
+                     <div class="col-xs-6">
+                      <input type="text" name="primerNombre" class="form-control" ng-model="item.primerNombre" required ng-change="step1.primerNombre.$valid ? (steps.percent=20) : (steps.percent=10)" placeholder="1er nombre" uppercased>
+                    </div>
+                    <div class="col-xs-6">
+                      <input type="text" name="segundoNombre" class="form-control" ng-model="item.segundoNombre" 
+                       placeholder="2do nombre" uppercased>
+                    </div>
+                  </div>
+                  <div class="row">
+                  <div class="col-xs-6">
+                    <input type="text" name="primerApellido" class="form-control" ng-model="item.primerApellido" required  ng-change="step1.primerApellido.$valid ? (steps.percent=30) : (steps.percent=10)" placeholder="1er apellido" uppercased>
+                  </div>
+                  <div class="col-xs-6">
+                    <input type="text" name="segundoApellido" class="form-control" ng-model="item.segundoApellido"  placeholder="2do apellido" uppercased>
+                  </div>
+                  </div>
+                    <div class="row">
+
+                      <div class="col-xs-4">
+                      <p>Nacionalidad:</p>
+                    <ui-select ng-model="item.nacionalidad" theme="bootstrap">
+                      <ui-select-match placeholder="V/E">{{$select.selected}}</ui-select-match>
+                      <ui-select-choices repeat="item in nacionalidades | filter: $select.search">
+                        <div ng-bind-html="item | highlight: $select.search"></div>
+                      </ui-select-choices>
+                    </ui-select>
+                    </div>
+                    <div class="col-xs-6">
+                    <p>Identificación:</p>
+                      <input type="number" name="cedula" class="form-control" ng-model="item.cedula"  placeholder="Identificación" required 
+                       ng-change="step1.cedula.$valid ? (steps.percent=40) : (steps.percent=10)" >
+                    </div>
+                  </div>
+                  <div class="row">
+                  <div class="col-xs-6">
+                  <p>Estado civil:</p>
+                    <ui-select ng-model="item.estadoCivil" theme="bootstrap">
+                      <ui-select-match placeholder="Estado civil...">{{$select.selected}}</ui-select-match>
+                      <ui-select-choices repeat="item in estados | filter: $select.search">
+                        <div ng-bind-html="item | highlight: $select.search"></div>
+                      </ui-select-choices>
+                    </ui-select>
+                  </div>
+                  
+                  </div>
+               
+            
+                <div class="m-t m-b">
+                  <button type="submit" ng-disabled="step1.$invalid" class="btn btn-default btn-rounded" ng-click="steps.step2=true">Siguiente
+                  </button>
+                </div>
+              </form>
+            </tab>
+            
+            <tab heading="Profesional" disabled="step1.$invalid" active="steps.step2" select="steps.percent=40">
+              <form name="step2" class="form-validation">
+           
+                <progressbar value="steps.percent" class="progress-xs" type="success">
+                </progressbar>
+                <div class="row">
+                   <div class="col-xs-4">
+                    <input type="text" name="cov" class="form-control" ng-model="item.cov"  placeholder="C.O.V" required
+                    ng-change="step2.cov.$valid ? (steps.percent=50) : (steps.percent=40)"
+                    >
+                  </div>
+                 
+                  <div class="col-xs-4">
+                    <input type="text" name="msas" class="form-control" ng-model="item.msas"  placeholder="M.S.A.S" required
+                     ng-change="step2.msas.$valid ? (steps.percent=60) : (steps.percent=40)"
+                    >
+                  </div>
+                  
+                  <div class="col-xs-4">
+                    <input type="text" name="cot" class="form-control" ng-model="item.cot"  placeholder="C.O.T" disabled="true">
+                  </div>
+                  <div class="col-xs-12">
+
+                    
+
+
+                  <p>Universidad de egreso:</p>
+                      <ui-select ng-model="item.universidadEgreso" theme="bootstrap">
+                        <ui-select-match placeholder="...">{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices group-by="'abr'" repeat="item.abr as item in universidades | filter: $select.search">
+                          <div ng-bind-html="item.name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                      </ui-select>
+                  </div>
+                      <div class="col-xs-5">
+                       <p>Año de egreso:</p>
+                      <ui-select ng-model="item.anoDeEgreso" theme="bootstrap">
+                        <ui-select-match placeholder="...">{{$select.selected}}</ui-select-match>
+                        <ui-select-choices repeat="item in anos | filter: $select.search">
+                          <div ng-bind-html="item | highlight: $select.search"></div>
+                        </ui-select-choices>
+                      </ui-select>
+                    </div>
+                    <div class="col-xs-12">
+                      <div class="col-xs-12">
+                       Especialidad 
+                          <label  class="i-switch m-t-xs m-r"   popover-trigger="mouseenter" popover-placement="bottom">
+                          <input type="checkbox" ng-model="switchEspecialidad" ng-click="doneEditingEstado(item)">
+                          <i></i>
+                          </label>
+                         
+                        </div>
+
+                    
+
+
+                         <div class="col-xs-12" ng-show="switchEspecialidad">
+                  <p>Especialidad:</p>
+                      <ui-select ng-model="item.especialidad" theme="bootstrap">
+                        <ui-select-match placeholder="...">{{$select.selected.nombre}}</ui-select-match>
+                        <ui-select-choices group-by="'nombre'" repeat="item.nombre as item in especialidades | filter: $select.search">
+                          <div ng-bind-html="item.nombre | highlight: $select.search"></div>
+                        </ui-select-choices>
+                      </ui-select>
+               
+                    
+                  </div>
+                  <div class="col-xs-12" ng-show="switchEspecialidad">
+                       <p>Año de egreso (especialidad):</p>
+                      <ui-select ng-model="item.anoDeEgresoEspecialidad" theme="bootstrap">
+                        <ui-select-match placeholder="...">{{$select.selected}}</ui-select-match>
+                        <ui-select-choices repeat="item in anos | filter: $select.search">
+                          <div ng-bind-html="item | highlight: $select.search"></div>
+                        </ui-select-choices>
+                      </ui-select>
+                      <p></p>
+
+                    </div>
+                       <div class="row col-xs-12" ng-show="switchEspecialidad">
+                      <input type="text" name="universidadEgresoEspecialidad" class="form-control" ng-model="item.universidadEgresoEspecialidad" 
+                       placeholder="Universidad de egreso (especialidad)" uppercased>
+                    </div>    
+                </div>
+                <div class="row col-xs-12">
+                <p></p>
+ <div class="col-xs-12">
+                   <textarea rows="2" class="form-control input-sm" name="direccionTrabajo"  placeholder="Dirección de trabajo" ng-model="item.direccionTrabajo" uppercased style="" 
+                       
+                        > </textarea>
+                  </div>
+</div>
+  <div class="col-xs-12" >
+
+
+
+                <p>Municipio:</p>
+                    <ui-select ng-model="item.municipio" name="municipio" theme="bootstrap" required ng-change="step3.municipio.$valid ? (steps.percent=100) : (steps.percent=60)">
+                      <ui-select-match placeholder="...">{{$select.selected.name}}</ui-select-match>
+                      <ui-select-choices group-by="'name'" repeat="item.name as item in municipios | filter: $select.search">
+                        <div ng-bind-html="item.name | highlight: $select.search"></div>
+                      </ui-select-choices>
+                    </ui-select>
+                </div>
+                 
+               
+                </div>
+
+                <div class="m-t m-b">
+                  <button type="button" class="btn btn-default btn-rounded" ng-click="steps.step1=true">Anterior</button>
+                  <button type="submit" ng-disabled="step2.$invalid" class="btn btn-default btn-rounded" ng-click="steps.step3=true">Siguiente</button>
+                </div>
+              </form>
+            </tab>
+    
+            <tab heading="Contacto" disabled="step2.$invalid" active="steps.step3" select="steps.percent=60">
+            <progressbar value="steps.percent" class="progress-xs" type="success">
+                </progressbar>
+                 <form name="step3" class="form-validation">
+               <div class="row">
+                   <div class="col-xs-12">
+                      <input type="email" placeholder="Email" class="form-control " ng-model="item.email" required>
+                  </div>
+                <div class="col-xs-4">
+          <input type="cuentaI" placeholder="Instagram" class="form-control" ng-model="item.cuentaI" >
+        </div>
+        <div class="col-xs-4">
+          <input type="cuentaF" placeholder="Facebook" class="form-control" ng-model="item.cuentaF" >
+        </div>
+  </div>
+       <div class="row">
+                <div class="col-xs-5">
+                   <input type="number" placeholder="Telf. de trabajo" class="form-control " ng-model="item.telefonoTrabajo" >
+                </div>
+              
+
+
+         
+                <div class="col-xs-5">
+                  <input type="number" placeholder="Telf. celular" class="form-control " ng-model="item.telefonoCelular" >
+                 </div>
+              
+         
+        </div>
+            <div class="row">
+                  <div class="col-xs-12">
+                        <textarea rows="2" class="form-control input-sm" name="direccion" uppercased  placeholder="Direccion de habitación" ng-model="item.direccion" style="" 
+                        ng-change="step3.direccion.$valid ? (steps.percent=80) : (steps.percent=60)"
+                        > </textarea>
+                    </div>
+                   
+               </div>
+                   
+
+                <div class="m-t m-b">
+    
+                  <button type="submit" ng-disabled="step2.$invalid" class="btn btn-default btn-rounded" ng-click="guardar(item)">Finalizar</button>
+                </div>
+                </form>
+            </tab>
+          </tabset>
+
+
+
+
+
+
+<!--   <form  name="form" class="form-validation" ng-show="{{item.letra == 'a'}}">
+    <div class="form-group col-sm-12" >
+      <div ng-controller="AccordionDemoCtrl">
+      <div class="list-group list-group-sm">
+        <div class="list-group-item" >
+          <input type="text" placeholder="Nombres"  class="form-control no-border" ng-model="item.nombres" required>
+        </div>
+        <div class="list-group-item">
+          <input type="email" placeholder="Email" class="form-control no-border" ng-model="item.email" required>
+        </div>
+        
+
+
+            <div class="list-group-item">
+                  <input type="password" class="form-control " placeholder="Contraseña" ng-model="item.password" required >   
+            </div>
+              <div class="list-group-item">
+                  <input type="password" class="form-control " placeholder="Confirma la contraseña" required ng-model="item.password2" ui-validate=" '$value==item.password' " ui-validate-watch=" 'item.password' ">
+              </div>
+             
+                  <span ng-show='form.$error.validator'>las contraseñas deben ser identicas</span>
+            
+      </div>
+      </div>
+    </div>
+    </form>
+    <form  name="form" class="form-validation" ng-show="{{item.letra == 'c'}}">
+    <div class="form-group col-sm-12" >
+      <div ng-controller="AccordionDemoCtrl">
+      <div class="list-group list-group-sm">
+        <div class="list-group-item" >
+          <input type="text" placeholder="Nombre de la clinica o Consultorio"  class="form-control no-border" ng-model="item.nombres" required>
+        </div>
+        <div class="list-group-item">
+          <input type="email" placeholder="Email" class="form-control no-border" ng-model="item.email" required>
+        </div>
+        
+
+
+            <div class="list-group-item">
+                  <input type="password" class="form-control " placeholder="Contraseña" ng-model="item.password" required >   
+            </div>
+              <div class="list-group-item">
+                  <input type="password" class="form-control " placeholder="Confirma la contraseña" required ng-model="item.password2" ui-validate=" '$value==item.password' " ui-validate-watch=" 'item.password' ">
+              </div>
+             
+                  <span ng-show='form.$error.validator'>las contraseñas deben ser identicas</span>
+            
+      </div>
+      </div>
+    </div>
+    </form> -->
+</div>
+<div class="modal-footer">                  
+  <button class="btn btn-default" ng-click="cancel()">Cancelar</button>
+  <!-- <button class="btn btn-primary" ng-click="okNuevoMiembro(item)" ng-disabled='form.$invalid'>OK</button> -->
+</div>
+

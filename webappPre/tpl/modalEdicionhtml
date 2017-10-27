@@ -1,0 +1,98 @@
+<div class="modal-header" ng-init="consultaMiembro()">
+    <h3 class="modal-title">Editar estao del miembro:
+
+    <span><p> {{item.primerNombre}} {{item.segundoNombre}} {{item.primerApellido}} {{item.segundoApellido}}</p></span></h3>
+</div>
+<div class="modal-body">
+    	
+  <div ng-controller="AccordionDemoCtrl" ng-show="item.primerNombre" >
+        <accordion close-others="oneAtATime">
+          <accordion-group heading="Datos de contacto"   is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+            <p>
+            <div ng-show="!item.editing">
+              <div class="col-sm-6"> 
+                <b>Teléfono:</b> {{item.telefonoCelular}}
+              </div>
+              <div class="col-sm-6">
+              <b>Email:</b>
+                {{item.email}}
+              </div>
+               <div class="col-sm-6">
+              <b>Instagram:</b>
+                {{item.cuentaI}}
+              </div>
+               <div class="col-sm-6">
+              <b>Facebook:</b>
+                {{item.cuentaF}}
+              </div>
+              <div class="col-sm-10">
+                <b>Dirección:</b> 
+                {{item.direccion}}
+              </div>  
+
+            </div>
+            
+            
+            </p>
+          </accordion-group>
+         
+         <accordion-group heading="Datos profesionales"  is-disabled="status.isFirstDisabled">
+            <p>
+            <div >
+              
+              <div class="col-sm-6"> 
+                <b>Universidad de Egreso:</b> {{item.universidadEgreso}}
+              </div>
+              <div class="col-sm-6"> 
+                <b>Año de Egreso:</b> {{item.anoDeEgreso}}
+              </div>
+              <div class="col-sm-6">
+              <b>COV:</b>
+                {{item.cov}}
+              </div>
+              <div class="col-sm-6">
+              <b>MSAS:</b>
+                {{item.msas}}
+              </div>
+             
+            </div>
+          
+          
+            </p>
+          </accordion-group>          
+   
+    
+
+           <accordion-group heading="Datos de ingreso"  is-disabled="status.isFirstDisabled">
+            <p>
+            <div >
+              
+              <div class="col-sm-6"> 
+                <b>Contraseña:</b> {{item.password}}
+              </div>
+            </div>
+          
+            
+            </p>
+          </accordion-group>          
+   
+        </accordion>
+       
+      </div>
+
+
+
+        
+        <div class="row form-group text-center">
+<h3 class="modal-title">Status</h3>
+            <div class="col-md-4 text-center">
+                <input placeholder="status" type="text" class="form-control" 
+               ng-model="item.status" required>
+             </div>  
+        </div>
+
+</div>
+<div class="modal-footer">                  
+    <button class="btn btn-default" ng-click="cancel()">Cancelar</button>
+    <button class="btn btn-primary" ng-click="okEdicion(item)">OK</button>
+</div>

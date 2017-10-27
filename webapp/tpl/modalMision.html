@@ -1,0 +1,35 @@
+<div class="modal-header" ng-init="entrar2()"> 
+    <h3 class="modal-title">Datos de la organización</h3>
+</div>
+<div class="modal-body">
+    
+        <div class="form-group">
+            <div class="col-md-18">
+                Misión de la organización
+                <textarea rows="5" class="form-control input-sm"   placeholder="Mision" ng-model="item.mision" style="" > </textarea>
+           </div>  
+        </div>
+        <div class="form-group">
+            <div class="col-md-18">
+                Visión de la organización
+                <textarea rows="5" class="form-control input-sm"   placeholder="Visión" ng-model="item.vision" style="" > </textarea>
+            </div>  
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-6">
+                Días de atención
+                <input placeholder="Días de atención" type="text" class="form-control" 
+               ng-model="item.diasAtencion">
+            </div>
+              <div class="col-xs-6">
+                Horario de trabajo
+                <input placeholder="Horario" type="text" class="form-control" 
+               ng-model="item.horario">
+            </div>
+        </div>
+</div>
+<div class="modal-footer">                  
+    <button class="btn btn-default" ng-click="cancel()">Cancelar</button>
+    <button class="btn btn-primary" ng-click="okMision(item)">OK</button>
+</div>

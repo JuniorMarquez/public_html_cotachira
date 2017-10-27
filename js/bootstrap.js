@@ -117,13 +117,13 @@
         };
         $scope.anos=$scope.anos.reverse();
 
-     $http.get('http://54.202.62.62:1345/municipio').then(function (resp) {
+     $http.get('http://52.39.15.75:1345/municipio').then(function (resp) {
     $scope.municipios = resp.data.results;
   });
-  $http.get('http://54.202.62.62:1345/universidad').then(function (resp) {
+  $http.get('http://52.39.15.75:1345/universidad').then(function (resp) {
     $scope.universidades = resp.data.results;
   });
-  $http.get('http://54.202.62.62:1345/especialidad').then(function (resp) {
+  $http.get('http://52.39.15.75:1345/especialidad').then(function (resp) {
     $scope.especialidades = resp.data.results;
   });
     var user=[];
@@ -157,7 +157,7 @@
       
       item.nivel=3;
     item.status='actualizado';
-    $http.post('http://54.202.62.62:1345/miembro/', item)
+    $http.post('http://52.39.15.75:1345/miembro/', item)
     $modalInstance.close();
 };
 $scope.okMision= function (item) {
@@ -167,13 +167,13 @@ $scope.okMision= function (item) {
       configAct.horario=item.horario;
       // alert("mision nueva: "+item.mision);
       var iden = MyService.data.idConfig;
-      $http.put('http://54.202.62.62:1345/configuracion/'+MyService.data.idConfig , configAct);       
+      $http.put('http://52.39.15.75:1345/configuracion/'+MyService.data.idConfig , configAct);       
       $modalInstance.close();
     };
 $scope.entrar2=function(item){
   var iden = MyService.data.idConfig;
   var datosCuenta=[];
-  $http.get('http://54.202.62.62:1345/configuracion').success(function(respuesta){
+  $http.get('http://52.39.15.75:1345/configuracion').success(function(respuesta){
         $scope.configuracion = respuesta.results[0];
         datosCuenta.mision=respuesta.results[0].mision; 
         datosCuenta.diasAtencion=respuesta.results[0].diasAtencion; 
@@ -193,24 +193,24 @@ $scope.entrar2=function(item){
     
 $scope.borrar=function(item){
    var idRaza=item.id;
-      $http.delete('http://54.202.62.62:1345/raza/'+idRaza , item)
+      $http.delete('http://52.39.15.75:1345/raza/'+idRaza , item)
       $modalInstance.dismiss('cancel');
 };
 
 $scope.borrarEspecialidad=function(item){
    var idEspecialidad=item.id;
-      $http.delete('http://54.202.62.62:1345/especialidad/'+idEspecialidad , item)
+      $http.delete('http://52.39.15.75:1345/especialidad/'+idEspecialidad , item)
       $modalInstance.dismiss('cancel');
 };
 
 $scope.borrarUniversidad=function(item){
    var idEspecialidadidUniversidad=item.id;
-      $http.delete('http://54.202.62.62:1345/universidad/'+idUniversidad , item)
+      $http.delete('http://52.39.15.75:1345/universidad/'+idUniversidad , item)
       $modalInstance.dismiss('cancel');
 };
 $scope.borrarMunicipio=function(item){
    var idMunicipio=item.id;
-      $http.delete('http://54.202.62.62:1345/municipio/'+idMunicipio , item)
+      $http.delete('http://52.39.15.75:1345/municipio/'+idMunicipio , item)
       $modalInstance.dismiss('cancel');
 };
 
@@ -229,7 +229,7 @@ $scope.borrarMunicipio=function(item){
     $scope.getPagedDataAsync = function (pageSize, page, searchText) {
         setTimeout(function () {
            var data ;
-          $http.get('http://54.202.62.62:1345/miembro/').then(function (resp2) {
+          $http.get('http://52.39.15.75:1345/miembro/').then(function (resp2) {
             $scope.miembros = resp2.data.results;
           });
           data = $scope.miembros;
@@ -270,14 +270,14 @@ $scope.borrarMunicipio=function(item){
       item.tipo="odontologo";
       
       item.nivel=3;
-      $http.post('http://54.202.62.62:1345/miembro/' ,item); 
+      $http.post('http://52.39.15.75:1345/miembro/' ,item); 
         $modalInstance.close();
              $state.go('access.signin');
 
     };
     $scope.okNuevaSolicitud = function (item) {
       item.estado="Pendiente";
-      $http.post('http://54.202.62.62:1345/solicitud/' ,item);  
+      $http.post('http://52.39.15.75:1345/solicitud/' ,item);  
       $modalInstance.close();
       $state.go('app.dashboard-v1');
       };
@@ -287,7 +287,7 @@ $scope.borrarMunicipio=function(item){
 $scope.okEspecialidad = function (item) {
 
       item.idUsuario=MyService.data.idUsuario;
-      $http.post('http://54.202.62.62:1345/especialidad/' ,item);       
+      $http.post('http://52.39.15.75:1345/especialidad/' ,item);       
       $modalInstance.close();
     };
     
@@ -299,13 +299,13 @@ $scope.okAprobacion = function (item) {
 $scope.okUniversidad= function (item) {
 
       item.idUsuario=MyService.data.idUsuario;
-      $http.post('http://54.202.62.62:1345/universidad/' ,item);       
+      $http.post('http://52.39.15.75:1345/universidad/' ,item);       
       $modalInstance.close();
     };
     $scope.okMunicipio= function (item) {
 
       item.idUsuario=MyService.data.idUsuario;
-      $http.post('http://54.202.62.62:1345/municipio/' ,item);       
+      $http.post('http://52.39.15.75:1345/municipio/' ,item);       
       $modalInstance.close();
     };
 $scope.setActividad1=function(){
@@ -318,7 +318,7 @@ $scope.okActividad = function (item) {
 
       item.idUsuario=MyService.data.idUsuario;
       item.tipo=MyService.data.tipoActividad;
-      $http.post('http://54.202.62.62:1345/evento/' ,item);       
+      $http.post('http://52.39.15.75:1345/evento/' ,item);       
       $modalInstance.close();
     };
 
@@ -328,7 +328,7 @@ $scope.okActividad = function (item) {
       item.autor="miembro";
       item.idUsuario=MyService.data.idUsuario;
       item.avatar="img/avatarMiembro.png";
-      $http.post('http://54.202.62.62:1345/mensaje/' ,item);       
+      $http.post('http://52.39.15.75:1345/mensaje/' ,item);       
       $modalInstance.close();
   };
     $scope.toaster = {
@@ -368,14 +368,14 @@ $scope.okActividad = function (item) {
     toaster.pop($scope.toaster.type8, $scope.toaster.title8, $scope.toaster.text8);
   };
     $scope.okBorrarMiembro = function (item) { 
-      $http.delete('http://54.202.62.62:1345/miembro/'+MyService.data.idenCliDel)  
+      $http.delete('http://52.39.15.75:1345/miembro/'+MyService.data.idenCliDel)  
       $scope.pop8();
       $modalInstance.close();
       $state.go('app.miembros');
     };
     $scope.okConfirm = function (item) { 
       var idArticulo=MyService.data.identificador;
-      $http.delete('http://54.202.62.62:1345/articulo/'+idArticulo , item)
+      $http.delete('http://52.39.15.75:1345/articulo/'+idArticulo , item)
       $scope.items = null;
       $scope.item = null;
       $scope.articulos = null;  
@@ -384,7 +384,7 @@ $scope.okActividad = function (item) {
 
     $scope.okConfirmConsultor = function (item) { 
       var idConsultor=MyService.data.identificador;
-      $http.delete('http://54.202.62.62:1345/consultor/'+idConsultor , item)
+      $http.delete('http://52.39.15.75:1345/consultor/'+idConsultor , item)
       $scope.items = null;
       $scope.item = null;
       $scope.ingredientes = null;  
@@ -393,7 +393,7 @@ $scope.okActividad = function (item) {
 
     $scope.okConfirm2 = function (item) { 
      var idEspecialidad=MyService.data.identificador;
-      $http.delete('http://54.202.62.62:1345/especialidad/'+idEspecialidad, item)
+      $http.delete('http://52.39.15.75:1345/especialidad/'+idEspecialidad, item)
       $scope.item = null;
       $scope.items = null;
       $modalInstance.close();
@@ -539,7 +539,7 @@ $scope.item.datosCuenta=datosCuenta;
 
     MyService.data.luz = 'on';
     
-    $http.get('http://54.202.62.62:1345/articulo/?idUsuario='+MyService.data.idUsuario).then(function (resp) {
+    $http.get('http://52.39.15.75:1345/articulo/?idUsuario='+MyService.data.idUsuario).then(function (resp) {
       $scope.items2 = resp.data.results;
     });
   

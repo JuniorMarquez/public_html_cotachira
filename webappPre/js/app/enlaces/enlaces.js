@@ -83,7 +83,7 @@ $scope.enlaces = [];
          
    // dtInstance.rerender(); 
       
-      $http.get('http://54.202.62.62:1345/enlace/').then(function (resp) {
+      $http.get('http://52.39.15.75:1345/enlace/').then(function (resp) {
         $scope.enlaces = resp.data.results;
         var bandera="";
         var bandera2="";
@@ -196,7 +196,7 @@ $scope.openBorrar = function (iden,timeout) {
   var item=[];
   var dato="";
   var datosCuenta="";
-  $http.get('http://54.202.62.62:1345/enlace/'+iden).success(function(respuesta){        
+  $http.get('http://52.39.15.75:1345/enlace/'+iden).success(function(respuesta){        
     $scope.enlace = respuesta;
     $scope.item=respuesta;
     MyService.data.idenCliDel=respuesta.id;
@@ -265,7 +265,7 @@ setTimeout(function() {  var modalInstance = $modal.open({
 //   var miembroAct={"status":"actualizado"};
 
 //    $scope.popAprobacion();
-//       $http.put('http://54.202.62.62:1345/miembro/'+MyService.data.idenMiembro, miembroAct)
+//       $http.put('http://52.39.15.75:1345/miembro/'+MyService.data.idenMiembro, miembroAct)
 //    $scope.getEnlaces2();
 //    setTimeout(function() {
 //     $state.go('app.dashboard-v1');

@@ -74,13 +74,13 @@ app.controller('ProfesionalesCtrl', ['$scope', '$state','$http', '$filter', '$mo
   $scope.format = 'shortDate';
     $scope.nacionalidades = ['V','E'];
   $scope.carga = function (){
-    $http.get('http://54.202.62.62:1345/especialidad/').then(function (resp) {
+    $http.get('http://52.39.15.75:1345/especialidad/').then(function (resp) {
       $scope.especialidades = resp.data.results;
     });
   };
 
 
-  $http.get('http://54.202.62.62:1345/especialidad/').then(function (resp) {
+  $http.get('http://52.39.15.75:1345/especialidad/').then(function (resp) {
     $scope.especialidades = resp.data.results;
   });
 
@@ -127,7 +127,7 @@ app.controller('ProfesionalesCtrl', ['$scope', '$state','$http', '$filter', '$mo
     }
   };
   $scope.carga = function(){
-    $http.get('http://54.202.62.62:1345/especialidad/').then(function (resp) {
+    $http.get('http://52.39.15.75:1345/especialidad/').then(function (resp) {
       $scope.especialidades = resp.data.results;
     });
   };
@@ -274,7 +274,7 @@ app.controller('ProfesionalesCtrl', ['$scope', '$state','$http', '$filter', '$mo
   };
 
   $scope.deleteEspecialidad = function(item){
-    $http.delete('http://54.202.62.62:1345/especialidad/'+item.id , item)
+    $http.delete('http://52.39.15.75:1345/especialidad/'+item.id , item)
     $scope.especialidades.splice($scope.especialidades.indexOf(item), 1);
   };
 
@@ -286,7 +286,7 @@ app.controller('ProfesionalesCtrl', ['$scope', '$state','$http', '$filter', '$mo
     $scope.especialidad = item;
     $scope.especialidad.selected = true;
     $scope.filter = item.nombre;
-    $http.get('http://54.202.62.62:1345/miembro/').then(function (resp) {
+    $http.get('http://52.39.15.75:1345/miembro/').then(function (resp) {
       $scope.items = resp.data.results;
       // alert("aqui");
        for (var i = 0; i < $scope.items.length; ++i) {
@@ -315,7 +315,7 @@ app.controller('ProfesionalesCtrl', ['$scope', '$state','$http', '$filter', '$mo
     $scope.item = item;
     $scope.item.selected = true;
 
-    $http.get('http://54.202.62.62:1345/miembro/').then(function (resp) {
+    $http.get('http://52.39.15.75:1345/miembro/').then(function (resp) {
       $scope.profesionales = resp.data.results;
      
       });
@@ -330,14 +330,14 @@ app.controller('ProfesionalesCtrl', ['$scope', '$state','$http', '$filter', '$mo
   
 
   $scope.deleteItem = function(item){
-    $http.delete('http://54.202.62.62:1345/miembro/'+item.id , item)
+    $http.delete('http://52.39.15.75:1345/miembro/'+item.id , item)
     $scope.items.splice($scope.items.indexOf(item), 1);
     $scope.item = $filter('orderBy')($scope.items, 'primerNombre')[0];
     if($scope.item) $scope.item.selected = true;
   };
 
   $scope.deleteprofesional = function(profesional){
-    $http.delete('http://54.202.62.62:1345/miembro/'+profesional.id , profesional)
+    $http.delete('http://52.39.15.75:1345/miembro/'+profesional.id , profesional)
     $scope.profesionalesFiltrados.splice($scope.profesionales.indexOf(profesional), 1);
     $scope.profesional = $filter('orderBy')($scope.profesionales, 'nombres')[0];
     if($scope.profesional) $scope.profesional.selected = true;
@@ -357,7 +357,7 @@ app.controller('ProfesionalesCtrl', ['$scope', '$state','$http', '$filter', '$mo
     $scope.item.especialidad = MyService.data.especialidad;
     $scope.item.mensajeNuevo=null;
     $scope.item.idUsuario = MyService.data.idUsuario;
-    $http.get('http://54.202.62.62:1345/especialidad/').then(function (resp) {
+    $http.get('http://52.39.15.75:1345/especialidad/').then(function (resp) {
     $scope.especialidades = resp.data.results;
     }); 
   };
@@ -380,10 +380,10 @@ app.controller('ProfesionalesCtrl', ['$scope', '$state','$http', '$filter', '$mo
     especialidadAct.selected=item.selected;
     especialidadAct.editing=item.editing;
     if (MyService.data.idenEspecialidad){
-      $http.put('http://54.202.62.62:1345/especialidad/'+MyService.data.idenEspecialidad, especialidadAct)
+      $http.put('http://52.39.15.75:1345/especialidad/'+MyService.data.idenEspecialidad, especialidadAct)
     }
     else {
-      $http.post('http://54.202.62.62:1345/especialidad/', especialidadAct)
+      $http.post('http://52.39.15.75:1345/especialidad/', especialidadAct)
     }
   
     $scope.items = null;
@@ -438,16 +438,16 @@ app.controller('ProfesionalesCtrl', ['$scope', '$state','$http', '$filter', '$mo
 
     if (MyService.data.idenProfesional){
       $scope.pop4();
-      $http.put('http://54.202.62.62:1345/miembro/'+MyService.data.idenProfesional , profesionalAct)
+      $http.put('http://52.39.15.75:1345/miembro/'+MyService.data.idenProfesional , profesionalAct)
     }
     else {
       $scope.pop3();;
-      $http.post('http://54.202.62.62:1345/miembro/', profesionalAct)
+      $http.post('http://52.39.15.75:1345/miembro/', profesionalAct)
     }
-    $http.get('http://54.202.62.62:1345/especialidad/').then(function (resp) {
+    $http.get('http://52.39.15.75:1345/especialidad/').then(function (resp) {
       $scope.especialidades = resp.data.results;
     });
-    $http.get('http://54.202.62.62:1345/miembro/').then(function (resp) {
+    $http.get('http://52.39.15.75:1345/miembro/').then(function (resp) {
       $scope.app.states = resp.data.results;
     });
     // $scope.items = null;

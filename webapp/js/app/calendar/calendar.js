@@ -163,7 +163,7 @@ $scope.filter = '';
     /* remove event */
     $scope.remove = function(item,index) {
      $scope.events.splice(index,1);
-        $http.delete('http://54.202.62.62:1345/evento/'+item.id , item);
+        $http.delete('http://52.39.15.75:1345/evento/'+item.id , item);
         $scope.popEliminarActividad();       
     // $scope.especialidades.splice($scope.especialidades.indexOf(item), 1);
     };
@@ -191,7 +191,7 @@ $scope.refreshEventsInCalendar=function() {
     $scope.events=[];
     $scope.eventos=[];
     $scope.eventSources=[];
-  $http.get('http://54.202.62.62:1345/evento/').then(function (resp) {
+  $http.get('http://52.39.15.75:1345/evento/').then(function (resp) {
       $scope.eventos = resp.data.results;
       var bandera="";
       var bandera2="";

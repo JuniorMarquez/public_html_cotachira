@@ -170,7 +170,7 @@ $scope.filter = '';
 
     /* event sources array*/
   $scope.cargaData=function(){
-  $http.get('http://54.202.62.62:1345/evento/').then(function (resp) {
+  $http.get('http://52.39.15.75:1345/evento/').then(function (resp) {
       $scope.eventos = resp.data.results;
        // MyService.data.events=$scope.events;
       var bandera="";
